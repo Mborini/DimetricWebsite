@@ -4,9 +4,9 @@ type Author = {
   designation: string;
 };
 
-export type Blog = {
-  id: number;
-  title: string;
+export type project = {
+  project_id: number;
+  project_name: string;
   paragraph: string;
   image: string;
   author: Author;

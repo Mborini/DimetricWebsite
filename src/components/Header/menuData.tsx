@@ -44,8 +44,8 @@ const menuData: Menu[] = [
       },
       {
         id: 43,
-        title: "Blog Grid Page",
-        path: "/blog",
+        title: "Projects Page",
+        path: "/projects",
         newTab: false,
       },
       {
