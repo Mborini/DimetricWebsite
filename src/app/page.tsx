@@ -1,6 +1,5 @@
 import AboutSectionOne from "@/components/About/AboutSectionOne";
 import AboutSectionTwo from "@/components/About/AboutSectionTwo";
-import Blog from "@/components/Projects/SingleProject";
 import Brands from "@/components/Brands";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
@@ -10,6 +9,9 @@ import Map from "@/components/Map";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import { Metadata } from "next";
+import SingleProject from "@/components/Projects/SingleProject";
+import { useEffect, useState } from "react";
+import LatestProjects from "./projects/LatestProjects/LatestProjects";
 
 export const metadata: Metadata = {
   title: "Free Next.js Template for Startup and SaaS",
@@ -18,6 +20,8 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+
+  
   return (
     <>
       <ScrollUp />
@@ -29,7 +33,7 @@ export default function Home() {
        <AboutSectionTwo />
     {/*  <Testimonials /> */}
       {/* <Pricing /> */}
-      <Blog />
+     <LatestProjects/>
       <Contact />
     </>
   );
