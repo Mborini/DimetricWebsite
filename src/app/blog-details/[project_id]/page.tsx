@@ -1,16 +1,52 @@
+// /app/blog-details/[project_id]/page.tsx
+'use client';
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { FaSpinner } from "react-icons/fa";
+import { project as ProjectType } from "@/types/project";
 import SharePost from "@/components/Projects/SharePost";
 import TagButton from "@/components/Projects/TagButton";
 import Image from "next/image";
 
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Blog Details Page | Free Next.js Template for Startup and SaaS",
-  description: "This is Blog Details Page for Startup Nextjs Template",
-  // other metadata
-};
-
 const BlogDetailsPage = () => {
+  const { project_id } = useParams();  // Access project_id from URL params
+  const [project, setProject] = useState<ProjectType | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (project_id) {
+      const fetchProjectDetails = async () => {
+        try {
+          const response = await fetch(`/api/projects/${project_id}`);
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
+          setProject(data);
+        } catch (error) {
+          console.error("Error fetching project details:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchProjectDetails();
+    }
+  }, [project_id]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center">
+        <FaSpinner className="animate-spin text-primary" size={35} />
+      </div>
+    );
+  }
+
+  if (!project) {
+    return <div>Error: Project not found.</div>;
+  }
+
+  // Render the project details
   return (
     <>
       <section className="pb-[120px] pt-[150px]">
@@ -19,8 +55,8 @@ const BlogDetailsPage = () => {
             <div className="w-full px-4 lg:w-8/12">
               <div>
                 <h2 className="mb-8 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight">
-                  10 amazing sites to download stock photos & digital assets for
-                  free
+                {project.project_name}
+
                 </h2>
                 <div className="mb-10 flex flex-wrap items-center justify-between border-b border-body-color border-opacity-10 pb-4 dark:border-white dark:border-opacity-10">
                   <div className="flex flex-wrap items-center">
