@@ -1,31 +1,35 @@
+"use client";  // Add this line to mark the component as a Client Component
 
 import React from 'react';
 import emailjs from 'emailjs-com';
 
 const Contact = () => {
-  const sendEmail = (e:any)=>{
-    e.preventDefault();
+  // Send email function
+  const sendEmail = (e) => {
+    e.preventDefault();  // Prevent default form submission
 
-    emailjs.sendForm(
-      'service_vuxv95h',      // Replace with your EmailJS service ID
-      'template_vqlp50u',     // Replace with your EmailJS template ID
-      e.target,               // Form data
-      'ia8ZgG1m-T6fReRBh'          // Replace with your EmailJS user ID
-    )
-    .then((result) => {
-      console.log(result.text);
-      alert('Email sent successfully!');
-    }, (error) => {
-      console.log(error.text);
-      alert('Failed to send email.');
-    });
+    emailjs
+      .sendForm(
+        'service_c6sxh1i',    // Your EmailJS service ID
+        'template_ntbb95q',    // Your EmailJS template ID
+        e.target,              // The form element
+        'YScGNG3IJ-Ac14Dc8'         // Your EmailJS user ID
+      )
+      .then(
+        (result) => {
+          console.log('Email sent successfully:', result.text);
+          alert('Your message has been sent!');
+        },
+        (error) => {
+          console.log('Email send error:', error.text);
+          alert('There was an error sending your message.');
+        }
+      );
 
-    e.target.reset();  // Optionally reset the form after submission
+    e.target.reset();  // Reset the form after submission
   };
 
   return (
-    
-    
     <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
       <div className="container">
         <div className="flex justify-center mx-4">
@@ -40,7 +44,7 @@ const Contact = () => {
               <p className="mb-12 text-base font-medium text-body-color">
                 Our support team will get back to you as soon as possible.
               </p>
-              <form >
+              <form onSubmit={sendEmail}>
                 <div className="-mx-4 flex flex-wrap">
                   <div className="w-full px-4 md:w-1/2">
                     <div className="mb-8">

@@ -14,8 +14,8 @@ import { useEffect, useState } from "react";
 import LatestProjects from "./projects/LatestProjects/LatestProjects";
 
 export const metadata: Metadata = {
-  title: "Free Next.js Template for Startup and SaaS",
-  description: "This is Home for Startup Nextjs Template",
+  title: "Dimetric - Development Dimension for Environment and Disaster Risk Reduction",
+  description: "Development Dimension for Environment and Disaster Risk Reduction",
   // other metadata
 };
 

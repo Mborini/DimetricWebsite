@@ -14,8 +14,6 @@ const Header = () => {
     setNavbarOpen(!navbarOpen);
   };
 
- 
-
   // Sticky Navbar
   const [sticky, setSticky] = useState(false);
   const handleStickyNavbar = () => {
@@ -63,20 +61,17 @@ const Header = () => {
         <div className="container">
           <div className="relative -mx-4 flex items-center justify-between">
             <div className="w-60 max-w-full px-4 xl:mr-12">
-              <Link
-                href="/"
-                className={`header-logo block w-full `}
-              >
+              <Link href="/" className={`header-logo block w-full `}>
                 <img
-            src="/images/logo/Llogo.png"  // Light mode logo
-            alt="Logo"
-            className="block dark:hidden"
-          />
-          <img
-            src="/images/logo/Dlogo.png"  // Dark mode logo
-            alt="Logo"
-            className="hidden dark:block"
-          />
+                  src="/images/logo/Llogo.png" // Light mode logo
+                  alt="Logo"
+                  className="block dark:hidden"
+                />
+                <img
+                  src="/images/logo/Dlogo.png" // Dark mode logo
+                  alt="Logo"
+                  className="hidden dark:block"
+                />
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">
@@ -133,7 +128,7 @@ const Header = () => {
                             >
                               {menuItem.title}
                               <span className="pl-3">
-                                <svg width="25" height="24" viewBox="0 0 25 24">
+                                <svg width="20" height="24" viewBox="0 0 25 24">
                                   <path
                                     fillRule="evenodd"
                                     clipRule="evenodd"
@@ -165,9 +160,9 @@ const Header = () => {
                   </ul>
                 </nav>
               </div>
-                <div>
-                  <ThemeToggler />
-                </div>
+              <div className="mr-14">
+                <ThemeToggler />
+              </div>
             </div>
           </div>
         </div>
