@@ -50,7 +50,7 @@ const Project = () => {
                 >
                   <SingleProject project={Project} />
                 </div>
-              ))}
+              ))} 
             </div>
           )}
         </div>
