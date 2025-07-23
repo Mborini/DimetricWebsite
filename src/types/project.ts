@@ -1,16 +1,14 @@
-type Author = {
-  name: string;
-  image: string;
-  designation: string;
-};
+
 
 export type project = {
-  project_id: number;
-  project_name: string;
-  paragraph: string;
-  image_path: string;
-  author: Author;
-  tags: string[];
-  publishDate: string;
-  date: string;
+  id: number;
+  title: string;
+  client?: string;
+  description?: string;
+  location?: string;
+  start_date?: string; 
+  end_date?: string;
+  value_usd?: number;
+  partner?: string;
+  imagename?: string;
 };
