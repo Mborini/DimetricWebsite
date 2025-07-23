@@ -45,6 +45,12 @@ export default function Dashboard() {
       color: "pink",
       path: "VisionPage",
     },
+    {
+      title: "Partners",
+      icon: MdShoppingCart,
+      color: "pink",
+      path: "PartnersmanagmentPage",
+    },
   ];
 
   return (

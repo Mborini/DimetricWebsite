@@ -1,6 +1,6 @@
-export type Feature = {
+export interface Feature {
   id: number;
-  icon: JSX.Element;
+  icon: string;
   title: string;
-  paragraph: string;
-};
+  description: string;
+}

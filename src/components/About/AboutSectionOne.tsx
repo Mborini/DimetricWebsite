@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import SectionTitle from "../Common/SectionTitle";
 
@@ -8,14 +10,21 @@ const checkIcon = (
 );
 
 const AboutSectionOne = () => {
-  const List = ({ text }) => (
-    <p className="mb-5 flex items-center text-lg font-medium text-body-color">
-      <span className="mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
-        {checkIcon}
-      </span>
-      {text}
-    </p>
-  );
+  const [paragraph, setParagraph] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("/api/Vision");
+        const data = await res.json();
+        setParagraph(data?.[0]?.description || "");
+      } catch (error) {
+        console.error("Failed to fetch paragraph:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <section id="about" className="pt-16 md:pt-20 lg:pt-20">
@@ -25,17 +34,13 @@ const AboutSectionOne = () => {
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
                 title="Our Vision"
-                paragraph="The Development Dimension For Environment Consultancies and Disaster Management is a regional specialized company offering wide range of services in areas of social development, Environment Management and disaster risk prevention and reduction within emergency and sustainable development contexts.
-
-We offer inclusive comprehensive expertise of high-tech professionals and trainers carrying out management and environment philosophy with a focus on cooperate social dimensions.
-
-We are committed to provide customer oriented solutions through fashioning high quality interdisciplinary services using entrepreneurial methodologies and advanced development tools."
+                paragraph={paragraph}
                 mb="44px"
               />
             </div>
 
             <div className="w-full px-4 lg:w-1/2">
-              <div className="relative mx-auto  flex justify-center items-center aspect-[25/24] max-w-[700px] lg:mr-0">
+              <div className="relative mx-auto  flex aspect-[25/24] max-w-[700px] items-center justify-center lg:mr-0">
                 <Image
                   src="/images/about/Wastewater.jpg"
                   alt="about-image"

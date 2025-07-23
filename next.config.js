@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-  domains: ["localhost", "via.placeholder.com"],
+  domains: ["localhost", "via.placeholder.com", "res.cloudinary.com"],
+
   remotePatterns: [
     {
       protocol: "https",
