@@ -3,8 +3,10 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { MdImage, MdShoppingCart } from "react-icons/md";
 import { GoProjectRoadmap } from "react-icons/go";
+import { LiaHandsHelpingSolid } from "react-icons/lia";
+import { PiBuildingLight } from "react-icons/pi";
+import { GiThreeFriends } from "react-icons/gi";
 import {
   Box,
   Paper,
@@ -35,20 +37,20 @@ export default function Dashboard() {
     },
     {
       title: "solutions & Services",
-      icon: MdImage,
+      icon: LiaHandsHelpingSolid ,
       color: "indigo",
       path: "SolutionsAndServicesPage",
     },
     {
       title: "vision",
-      icon: MdShoppingCart,
+      icon: PiBuildingLight ,
       color: "pink",
       path: "VisionPage",
     },
     {
       title: "Partners",
-      icon: MdShoppingCart,
-      color: "pink",
+      icon: GiThreeFriends ,
+      color: "orange",
       path: "PartnersmanagmentPage",
     },
   ];
