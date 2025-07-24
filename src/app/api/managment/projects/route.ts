@@ -28,14 +28,15 @@ export async function POST(request: Request) {
     value_usd,
     partner,
     imagename,
+    is_latest = false, // Default to false if not provided
   } = body;
 
   try {
     const result = await client.query(
       `
       INSERT INTO projects 
-      (title, client, description, location, start_date, end_date, value_usd, partner, imagename)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+      (title, client, description, location, start_date, end_date, value_usd, partner, imagename, is_latest)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
       RETURNING *`,
       [
         title,
@@ -47,6 +48,7 @@ export async function POST(request: Request) {
         value_usd,
         partner,
         imagename,
+        is_latest
       ]
     );
 

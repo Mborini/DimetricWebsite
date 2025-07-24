@@ -26,6 +26,7 @@ export default function ProjectForm({ initialValues, onSubmit, loading }: Props)
         value_usd: 0,
         partner: "",
         imagename: "",
+        is_latest: false,
       },
 });
 
@@ -139,6 +140,18 @@ export default function ProjectForm({ initialValues, onSubmit, loading }: Props)
           {...form.getInputProps("imagename")}
         />
       </div>
+    {/* Is Latest? */}
+<div className="flex items-center space-x-2">
+  <input
+    type="checkbox"
+    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600"
+    {...form.getInputProps("is_latest", { type: "checkbox" })}
+  />
+  <label className="text-sm font-medium text-gray-700 dark:text-gray-200">
+    Is latest?
+  </label>
+</div>
+
 
       {/* Submit */}
       <div className="text-right">

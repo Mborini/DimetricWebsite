@@ -2,9 +2,9 @@ import { connectToDatabase } from "../../../../../../lib/db";
 
 export async function PUT(
   req: Request,
-  context: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> },
 ) {
-  const { id } = await context.params; 
+  const { id } = await context.params;
   const client = await connectToDatabase();
 
   const {
@@ -17,6 +17,7 @@ export async function PUT(
     value_usd,
     partner,
     imagename,
+    is_latest,
   } = await req.json();
 
   try {
@@ -31,8 +32,9 @@ export async function PUT(
           end_date = $6,
           value_usd = $7,
           partner = $8,
-          imagename = $9
-      WHERE id = $10
+          imagename = $9,
+          is_latest = $10
+      WHERE id = $11
       RETURNING *`,
       [
         title,
@@ -44,8 +46,9 @@ export async function PUT(
         value_usd,
         partner,
         imagename,
+        is_latest,
         id,
-      ]
+      ],
     );
 
     if (result.rows.length === 0) {
@@ -64,12 +67,15 @@ export async function PUT(
 // DELETE: Delete project
 export async function DELETE(
   req: Request,
-    context: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> },
 ) {
-    const { id } = await context.params;
-    const client = await connectToDatabase();
+  const { id } = await context.params;
+  const client = await connectToDatabase();
   try {
-    const result = await client.query("DELETE FROM projects WHERE id = $1 RETURNING *", [id]);
+    const result = await client.query(
+      "DELETE FROM projects WHERE id = $1 RETURNING *",
+      [id],
+    );
 
     if (result.rows.length === 0) {
       return new Response("Project not found", { status: 404 });

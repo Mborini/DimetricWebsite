@@ -30,6 +30,9 @@ const PartnersComponent = () => {
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
+            <h2 className="mb-6 text-center text-2xl font-bold text-gray-800 dark:text-white">
+              Our Partners
+            </h2>
             <div className="flex flex-wrap items-center justify-around rounded-sm bg-gray-light px-8 py-4 dark:bg-gray-dark sm:px-10 md:px-[50px] md:py-[40px] xl:p-[50px] 2xl:px-[70px] 2xl:py-[60px]">
               {partnerData.map((partner) => (
                 <SinglePartner key={partner.id} partner={partner} />

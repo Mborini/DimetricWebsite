@@ -16,6 +16,7 @@ import {
   useMantineTheme,
   useMantineColorScheme,
 } from "@mantine/core";
+import { FaTrash } from "react-icons/fa";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -52,6 +53,12 @@ export default function Dashboard() {
       icon: GiThreeFriends ,
       color: "orange",
       path: "PartnersmanagmentPage",
+    },
+    {
+      title: "waste Features",
+      icon: FaTrash,
+      color: "gray",
+      path: "wasteManagementFeaturesPage",
     },
   ];
 
