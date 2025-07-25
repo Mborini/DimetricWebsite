@@ -20,27 +20,24 @@ const SingleProject = ({ project }: { project: ProjectType | undefined }) => {
   }
 
   const { title, id, start_date, imagename } = project;
-  const formattedDate = start_date
-    ? new Date(start_date).getFullYear()
-    : "N/A";
+  const formattedDate = start_date ? new Date(start_date).getFullYear() : "N/A";
 
   return (
-
     <Card
       shadow="md"
       radius="xl"
-     bg="gray.2"
-      
+      bg="gray.4"
       p="lg"
+      
       style={{ transition: "transform 0.3s", cursor: "pointer" }}
       className="hover:scale-[1.03]"
     >
-      <Anchor component={Link} href={`/project-details/${id}`} >
+      <Anchor component={Link} href={`/project-details/${id}`}>
         <Box
           h={250}
           style={{
             overflow: "hidden",
-            position: "relative", 
+            position: "relative",
             borderRadius: "12px",
           }}
         >
@@ -75,18 +72,17 @@ const SingleProject = ({ project }: { project: ProjectType | undefined }) => {
           )}
         </Box>
       </Anchor>
-      <Stack  mt="md">
+      <Stack mt="md">
         <Title order={3} size="h4" lineClamp={2}>
           <Anchor
             component={Link}
             href={`/product-details/${id}`}
             c="dark.9"
-            
             fw={500}
           >
             {title}
           </Anchor>
-        </Title> 
+        </Title>
       </Stack>
     </Card>
   );

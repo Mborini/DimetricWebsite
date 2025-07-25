@@ -56,10 +56,10 @@ const LatestProjects = () => {
           </div>
         ) : (
           <div className="-mx-4 flex flex-wrap justify-center">
-            {projects.slice(0, 3).map((project) => (
+            {projects.slice(0, 6).map((project) => (
               <div
                 key={project.project_id}
-                className="w-full px-4 md:w-2/3 lg:w-1/2 xl:w-1/3"
+                className="w-full px-4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-8"
               >
                 <SingleProject project={project} />
               </div>
