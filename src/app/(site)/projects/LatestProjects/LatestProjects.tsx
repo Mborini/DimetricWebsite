@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import SingleProject from "@/components/Projects/SingleProject";
-import Breadcrumb from "@/components/Common/Breadcrumb";
-import { FaSpinner } from "react-icons/fa";
 import SectionTitle from "@/components/Common/SectionTitle";
 
 const LatestProjects = () => {
@@ -29,10 +27,7 @@ const LatestProjects = () => {
   }, []);
 
   return (
-    <>
-      
-      <section className="pb-[120px] pt-[25px]">
-      
+    <section className="pb-[120px] pt-[25px]">
       <div className="container">
         <SectionTitle
           title="Our Latest Projects"
@@ -41,28 +36,38 @@ const LatestProjects = () => {
           mb="80px"
         />
       </div>
-        <div className="container">
-          {loading ? (
-            <p>
-              <div className="flex items-center justify-center">
-                <FaSpinner className="animate-spin text-primary" size={35} />
+
+      <div className="container">
+        {loading ? (
+          <div className="-mx-4 flex flex-wrap justify-center">
+            {[...Array(3)].map((_, idx) => (
+              <div
+                key={idx}
+                className="w-full px-4 md:w-2/3 lg:w-1/2 xl:w-1/3 mb-10 animate-pulse"
+              >
+                <div className="rounded-xl border p-6 shadow-md dark:border-gray-700">
+                  <div className="h-48 w-full rounded bg-gray-300 dark:bg-gray-500 mb-4" />
+                  <div className="h-6 w-3/4 rounded bg-gray-300 dark:bg-gray-500 mb-3" />
+                  <div className="h-4 w-full rounded bg-gray-300 dark:bg-gray-500 mb-2" />
+                  <div className="h-4 w-5/6 rounded bg-gray-300 dark:bg-gray-500" />
+                </div>
               </div>
-            </p>
-          ) : (
-            <div className="-mx-4 flex flex-wrap justify-center">
-        {projects.slice(0, 3).map((Project) => ( // Use slice to get the first 3 projects
-          <div
-            key={Project.project_id}
-            className="w-full px-4 md:w-2/3 lg:w-1/2 xl:w-1/3"
-          >
-            <SingleProject project={Project} />
+            ))}
           </div>
-        ))}
+        ) : (
+          <div className="-mx-4 flex flex-wrap justify-center">
+            {projects.slice(0, 3).map((project) => (
+              <div
+                key={project.project_id}
+                className="w-full px-4 md:w-2/3 lg:w-1/2 xl:w-1/3"
+              >
+                <SingleProject project={project} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-          )}
-        </div>
-      </section>
-    </>
+    </section>
   );
 };
 

@@ -1,5 +1,27 @@
+"use client";
+import { Skeleton } from "@mantine/core";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
+  const [title, setTitle] = useState("Welcome to Dimetric");
+  const [description, setDescription] = useState("");
+  useEffect(() => {
+    const fetchMessage = async () => {
+      try {
+        const response = await fetch("/api/managment/WelcomeMessage");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch welcome message");
+        }
+        const data = await response.json();
+        setTitle(data[0].title);
+        setDescription(data[0].description);
+      } catch (error) {
+        console.error("Error fetching welcome message:", error);
+      }
+    };
+    fetchMessage();
+  }, []);
   return (
     <>
       <section
@@ -11,14 +33,22 @@ const Hero = () => {
             <div className="w-full px-4">
               <div className="mx-auto max-w-[800px] text-center">
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                  Welcome to Dimetric
+                  {title}
                 </h1>
-                <p className="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                The Development Dimension For Environment Consultancies and Disaster Management is a regional specialized company offering wide range of services in areas of social development, Environment Management and disaster risk prevention and reduction within emergency and sustainable development contexts.
-                and disaster risk prevention and reduction within emergency and sustainable development contexts.
-
-                </p>
-                
+                {description ? (
+                  <p className="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
+                    {description}
+                  </p>
+                ) : (
+                  <div className="mb-12 flex flex-col items-center space-y-2">
+                    <div className="h-4 w-[90%] animate-pulse rounded-sm bg-gray-300 dark:bg-gray-600" />
+                    <div className="h-4 w-[80%] animate-pulse rounded-sm bg-gray-300 dark:bg-gray-600" />
+                    <div className="h-4 w-[90%] animate-pulse rounded-sm bg-gray-300 dark:bg-gray-600" />
+                    <div className="h-4 w-[80%] animate-pulse rounded-sm bg-gray-300 dark:bg-gray-600" />
+                    <div className="h-4 w-[90%] animate-pulse rounded-sm bg-gray-300 dark:bg-gray-600" />
+                    <div className="h-4 w-[80%] animate-pulse rounded-sm bg-gray-300 dark:bg-gray-600" />
+                  </div>
+                )}
               </div>
             </div>
           </div>

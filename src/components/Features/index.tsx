@@ -35,7 +35,21 @@ const Features = () => {
         />
 
         {loading ? (
-          <p className="text-center text-gray-500">Loading...</p>
+          <div className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="animate-pulse space-y-4 rounded-lg bg-gray-100 p-6 dark:bg-neutral-800"
+              >
+                <div className="h-8 w-2/3 rounded bg-gray-300 dark:bg-gray-500" />
+                <div className="h-4 w-full rounded bg-gray-300 dark:bg-gray-500" />
+                <div className="h-4 w-5/6 rounded bg-gray-300 dark:bg-gray-500" />
+                <div className="h-4 w-full rounded bg-gray-300 dark:bg-gray-500" />
+                <div className="h-4 w-5/6 rounded bg-gray-300 dark:bg-gray-500" />
+                <div className="h-4 w-full rounded bg-gray-300 dark:bg-gray-500" />
+              </div>
+            ))}
+          </div>
         ) : (
           <div className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => (

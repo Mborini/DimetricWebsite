@@ -60,6 +60,12 @@ export default function Dashboard() {
       color: "gray",
       path: "wasteManagementFeaturesPage",
     },
+    {
+      title: "welcome Message",
+      icon: FaTrash,
+      color: "gray",
+      path: "welcomeMessagePage",
+    },
   ];
 
   return (
