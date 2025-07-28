@@ -25,7 +25,13 @@ const AboutSectionTwo = () => {
   }, []);
 
   return (
-    <section className="py-6 md:py-20 lg:py-20">
+   <section className="relative py-6 md:py-20 lg:py-20 overflow-hidden">
+  {/* صورة خلفية في أقصى اليمين */}
+  <div
+    className="absolute right-0 top-0 h-full w-1/3 bg-no-repeat bg-right bg-contain opacity-20 pointer-events-none z-0"
+    style={{ backgroundImage: "url('/images/hero/m8.png')", opacity: 0.09 }}
+  ></div>
+
       <div className="container">
         {/* العنوان */}
         <div className="w-full px-4 text-start mb-1">

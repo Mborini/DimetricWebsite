@@ -24,7 +24,13 @@ const AboutSectionOne = () => {
   }, []);
 
   return (
-    <section id="about" className="pt-10 md:pt-2 lg:pt-2">
+<section className="relative py-6 md:py-20 lg:py-20 overflow-hidden">
+  <div
+    className="absolute left-0 top-0 h-full w-1/3 bg-no-repeat bg-right bg-contain opacity-20 pointer-events-none z-0"
+    style={{ backgroundImage: "url('/images/hero/m7.png')" }}
+  ></div>
+
+  {/* باقي الكود تبعك بدون تغيير */}
       <div className="container">
         <div className="border-b border-body-color/[.15] pb-16 dark:border-white/[.15] md:pb-20 lg:pb-28">
           <div className="-mx-4 flex flex-wrap items-center">

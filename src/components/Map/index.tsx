@@ -65,33 +65,37 @@ const Map = () => {
   }, [lng, lat, zoom]);
 
   return (
-    <section className="relative z-10 py-5 md:py-10 lg:py-14 ">
-      <div className="container">
-        <SectionTitle
-          title="where we are ?"
-          paragraph="We are located in the heart of Amman city, where you can easily find us."
-          center
-          mb="80px"
-        />
+<section className="relative z-10 overflow-hidden min-h-[600px] py-10 md:py-20 lg:py-24">
+  {/* خلفية الصورة */}
+  <div
+    className="absolute inset-0 bg-center bg-cover opacity-20 z-0"
+    style={{
+      backgroundImage: "url('/images/hero/m6.png')",
+    }}
+  />
 
-        <div className="-mx-4 flex flex-wrap ">
-          <div className="w-full px-4">
-            <div
-              className="mx-auto max-w-[850px] shadow-xl overflow-hidden rounded-xl"
-              data-wow-delay=".15s"
-            >
-              <div className="relative aspect-[77/40] items-center justify-center border-8 border-gray-300">
-                {/* Map container where Mapbox map will render */}
-                <div ref={mapContainer} className="w-full h-[450px] rounded-lg" />
-              </div>
-            </div>
+  {/* المحتوى */}
+  <div className="relative z-10 container">
+    <SectionTitle
+      title="where we are ?"
+      paragraph="We are located in the heart of Amman city, where you can easily find us."
+      center
+      mb="80px"
+    />
+
+    <div className="-mx-4 flex flex-wrap">
+      <div className="w-full px-4">
+        <div className="mx-auto max-w-[850px] shadow-xl overflow-hidden rounded-xl">
+          <div className="relative aspect-[77/40] items-center justify-center border-8 border-gray-300">
+            <div ref={mapContainer} className="w-full h-[450px] rounded-lg" />
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      {/* Background Shape */}
-      <div className="absolute bottom-0 left-0 right-0 z-[-1] h-full w-full bg-[url(/images/video/shape.svg)] bg-cover bg-center bg-no-repeat"></div>
-    </section>
+
   );
 };
 

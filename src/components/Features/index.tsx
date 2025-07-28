@@ -26,7 +26,13 @@ const SolutionsAndFeatures = () => {
   }, []);
 
   return (
-    <section id="features" className="py-16 md:py-20 lg:py-28">
+    <section id="features" className="relative py-16 md:py-20 lg:py-28 overflow-hidden">
+  {/* خلفية بصورة مع أوبيستي */}
+  <div
+    className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 -z-10"
+    style={{ backgroundImage: "url('/images/hero/m2.png')" }}
+  />
+
       <div className="container">
         <h1 className="mb-20 text-5xl font-bold text-center text-black dark:text-white">
           Our Solutions & Features
