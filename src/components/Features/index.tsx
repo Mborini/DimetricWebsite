@@ -5,7 +5,7 @@ import { Feature } from "@/types/feature";
 import SectionTitle from "../Common/SectionTitle";
 import SingleFeature from "./SingleFeature";
 
-const Features = () => {
+const SolutionsAndFeatures = () => {
   const [features, setFeatures] = useState<Feature[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,12 +28,9 @@ const Features = () => {
   return (
     <section id="features" className="py-16 md:py-20 lg:py-28">
       <div className="container">
-        <SectionTitle
-          title="Solutions and Services"
-          paragraph="Our team works across various sectors to deliver tailored solutions. We ensure the highest standards of quality and innovation in every project we take on."
-          center
-        />
-
+        <h1 className="mb-20 text-5xl font-bold text-center text-black dark:text-white">
+          Our Solutions & Features
+        </h1>
         {loading ? (
           <div className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
             {[...Array(6)].map((_, i) => (
@@ -62,4 +59,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default SolutionsAndFeatures;

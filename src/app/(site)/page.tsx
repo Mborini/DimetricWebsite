@@ -3,7 +3,7 @@ import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import PartnersCompnent from "@/components/Brands";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
-import Features from "@/components/Features";
+import SolutionsAndFeatures from "@/components/Features";
 import Hero from "@/components/Hero";
 import Map from "@/components/Map";
 import Pricing from "@/components/Pricing";
@@ -26,7 +26,7 @@ export default function Home() {
     <>
       <ScrollUp />
       <Hero />
-      <Features />
+      <SolutionsAndFeatures />
       <Map />
       <PartnersCompnent />
       <AboutSectionOne />

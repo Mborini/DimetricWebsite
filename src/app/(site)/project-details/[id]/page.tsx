@@ -42,7 +42,6 @@ const BlogDetailsPage = () => {
     }
   }, [id]);
 
-
   if (!project) {
     return <Text color="red">Error: Project not found.</Text>;
   }
@@ -62,7 +61,7 @@ const BlogDetailsPage = () => {
           <Box mb="xl">
             <Box pos="relative" h={600}>
               <Image
-                src={`/images/projects/${project.imagename}`}
+                src={project.imagename}
                 alt={project.title}
                 fill
                 style={{
@@ -81,19 +80,23 @@ const BlogDetailsPage = () => {
               className="text-[#354476] dark:text-white"
             >
               {/* Partner */}
-              <Group gap="xs" wrap="nowrap">
-                <Text
-                  className="text-[#354476] dark:text-white"
-                  fw={700}
-                  size="sm"
-                >
-                  Partner:
-                </Text>
-                <Text c="gray.7" size="md">
-                  {project.partner || "Not specified"}
-                </Text>
-              </Group>
+              {project.partner && (
+                <Group gap="xs" wrap="nowrap">
+                  <Text
+                    className="text-[#354476] dark:text-white"
+                    fw={700}
+                    size="sm"
+                  >
+                    Partner:
+                  </Text>
 
+                  <Text c="gray.4" size="md">
+                    {project.partner || "Not specified"}
+                  </Text>
+                </Group>
+              )}
+
+              {/* Tags */}
               {/* Location */}
               <Group gap="xs" wrap="nowrap">
                 <Text
@@ -103,7 +106,7 @@ const BlogDetailsPage = () => {
                 >
                   Location:
                 </Text>
-                <Text c="gray.7" size="md">
+                <Text c="gray.4" size="md">
                   {project.location || "Not specified"}
                 </Text>
               </Group>
@@ -113,7 +116,7 @@ const BlogDetailsPage = () => {
                 <Text fw={700} size="sm">
                   Value (USD):
                 </Text>
-                <Text c="gray.7" size="md">
+                <Text c="gray.4" size="md">
                   {project.value_usd
                     ? `$${project.value_usd.toLocaleString()}`
                     : "Not specified"}
@@ -122,12 +125,7 @@ const BlogDetailsPage = () => {
             </Group>
 
             <Divider my="xl" />
-            <Group
-              justify="space-between"
-              align="flex-start"
-              wrap="wrap"
-              p="md"
-            >
+            <Group justify="space-between" align="flex-start" wrap="wrap">
               {/* Client */}
               <Box>
                 <Title
@@ -137,7 +135,7 @@ const BlogDetailsPage = () => {
                 >
                   Client
                 </Title>
-                <Text c="gray.4" size="lg">
+                <Text c="gray.1" size="lg">
                   {project.client || "Client not specified"}
                 </Text>
               </Box>
@@ -145,25 +143,23 @@ const BlogDetailsPage = () => {
               {/* Dates */}
               <Stack gap={4} align="flex-end">
                 {project.start_date && (
-                  <Text size="sm" c="gray.7">
+                  <Text size="sm" c="gray.4">
                     <strong>Start Date:</strong>{" "}
                     {new Date(project.start_date).toLocaleDateString(
                       undefined,
                       {
                         year: "numeric",
                         month: "long",
-                        day: "numeric",
                       },
                     )}
                   </Text>
                 )}
                 {project.end_date && (
-                  <Text size="sm" c="gray.7">
+                  <Text size="sm" c="gray.4">
                     <strong>End Date:</strong>{" "}
                     {new Date(project.end_date).toLocaleDateString(undefined, {
                       year: "numeric",
                       month: "long",
-                      day: "numeric",
                     })}
                   </Text>
                 )}
@@ -173,7 +169,7 @@ const BlogDetailsPage = () => {
           <Title className="text-[#354476] dark:text-white" order={3} mb="sm">
             Project Description
           </Title>
-          <Text c="gray.7" size="md" mb="xl">
+          <Text c="gray.4" size="md" mb="xl">
             {project.description ||
               "No description available for this project."}
           </Text>

@@ -129,10 +129,10 @@ export default function ProjectForm({ initialValues, onSubmit, loading }: Props)
         />
       </div>
 
-      {/* Image Name */}
+      {/* Image Path */}
       <div>
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-          Image Name
+          Image path
         </label>
         <input
           type="text"

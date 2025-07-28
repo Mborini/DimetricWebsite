@@ -56,20 +56,21 @@ const SingleProject = ({ project }: { project: ProjectType | undefined }) => {
             {formattedDate}
           </Badge>
 
-          {imagename ? (
-            <Image
-              src={`/images/projects/${imagename}`}
-              alt={title}
-              fill
-              style={{ objectFit: "cover", zIndex: 1 }}
-            />
-          ) : (
-            <Center h="100%" bg="gray.2">
-              <Text size="sm" color="gray">
-                No Image
-              </Text>
-            </Center>
-          )}
+          {imagename && (imagename.startsWith("http") || imagename.startsWith("/")) ? (
+  <Image
+    src={imagename}
+    alt={title}
+    fill
+    style={{ objectFit: "cover", zIndex: 1 }}
+  />
+) : (
+  <Center h="100%" bg="gray.2">
+    <Text size="sm" color="gray">
+      No Image
+    </Text>
+  </Center>
+)}
+
         </Box>
       </Anchor>
       <Stack mt="md">

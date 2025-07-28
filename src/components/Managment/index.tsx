@@ -7,6 +7,9 @@ import { GoProjectRoadmap } from "react-icons/go";
 import { LiaHandsHelpingSolid } from "react-icons/lia";
 import { PiBuildingLight } from "react-icons/pi";
 import { GiThreeFriends } from "react-icons/gi";
+import { FaPhotoVideo } from "react-icons/fa";
+import { FaRegMessage } from "react-icons/fa6";
+
 import {
   Box,
   Paper,
@@ -62,9 +65,15 @@ export default function Dashboard() {
     },
     {
       title: "welcome Message",
-      icon: FaTrash,
-      color: "gray",
+      icon: FaRegMessage ,
+      color: "red",
       path: "welcomeMessagePage",
+    },
+    {
+      title: "postimage",
+      icon:  FaPhotoVideo ,
+      color: "yellow",
+      path: "https://postimg.cc/files",
     },
   ];
 

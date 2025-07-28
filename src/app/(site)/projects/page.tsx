@@ -58,9 +58,10 @@ const Project = () => {
               spacing="lg"
               verticalSpacing="xl"
             >
-              {projects.map((project) => (
-                <SingleProject key={project.id} project={project} />
-              ))}
+             {projects.map((project, index) => (
+  <SingleProject key={project?.id || index} project={project} />
+))}
+
             </SimpleGrid>
           )}
         </Container>
