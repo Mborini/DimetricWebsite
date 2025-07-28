@@ -166,10 +166,7 @@ const BlogDetailsPage = () => {
               </Stack>
             </Group>
           </Box>
-          <Title className="text-[#354476] dark:text-white" order={3} mb="sm">
-            Project Description
-          </Title>
-          <Text c="gray.4" size="md" mb="xl">
+          <Text style={{ whiteSpace: "pre-wrap" }} c="gray.4" size="md" mb="xl">
             {project.description ||
               "No description available for this project."}
           </Text>

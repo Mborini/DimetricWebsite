@@ -16,6 +16,7 @@
     "@mantine/core": "^8.2.1",
     "@mantine/form": "^8.2.1",
     "@mantine/hooks": "^8.2.1",
+    "@mantine/rte": "^5.10.5",
     "cloudinary": "^2.7.0",
     "emailjs-com": "^3.2.0",
     "eslint": "^8.56.0",

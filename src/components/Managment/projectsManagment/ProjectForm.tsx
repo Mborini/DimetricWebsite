@@ -1,6 +1,13 @@
 "use client";
 
 import { useForm } from "@mantine/form";
+import dynamic from "next/dynamic";
+
+// تحميل RichTextEditor بشكل ديناميكي بدون SSR
+const RichTextEditor = dynamic(
+  () => import("@mantine/rte").then(mod => mod.RichTextEditor),
+  { ssr: false }
+);
 
 interface Props {
   initialValues?: any;
@@ -9,28 +16,26 @@ interface Props {
 }
 
 export default function ProjectForm({ initialValues, onSubmit, loading }: Props) {
- const form = useForm({
-  initialValues: initialValues
-    ? {
-        ...initialValues,
-        start_date: initialValues.start_date?.slice(0, 10) || "",
-        end_date: initialValues.end_date?.slice(0, 10) || "",
-      }
-    : {
-        title: "",
-        client: "",
-        description: "",
-        location: "",
-        start_date: "",
-        end_date: "",
-        value_usd: 0,
-        partner: "",
-        imagename: "",
-        is_latest: false,
-      },
-});
-
-
+  const form = useForm({
+    initialValues: initialValues
+      ? {
+          ...initialValues,
+          start_date: initialValues.start_date?.slice(0, 10) || "",
+          end_date: initialValues.end_date?.slice(0, 10) || "",
+        }
+      : {
+          title: "",
+          client: "",
+          description: "",
+          location: "",
+          start_date: "",
+          end_date: "",
+          value_usd: 0,
+          partner: "",
+          imagename: "",
+          is_latest: false,
+        },
+  });
   return (
     <form onSubmit={form.onSubmit(onSubmit)} className="space-y-4">
       {/* Title */}
@@ -57,16 +62,22 @@ export default function ProjectForm({ initialValues, onSubmit, loading }: Props)
         />
       </div>
 
-      {/* Description */}
+      {/* Description (Rich Text Editor) */}
       <div>
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
           Description
         </label>
-        <textarea
-          className="w-full rounded-xl border border-gray-300 px-4 py-2 text-gray-900 dark:bg-gray-800 dark:text-white dark:border-gray-600"
-          rows={4}
-          {...form.getInputProps("description")}
+         <RichTextEditor
+          value={form.values.description}
+          onChange={(value) => form.setFieldValue("description", value)}
+          className="dark:text-white"
+          style={{
+            minHeight: 200,
+            borderRadius: "0.75rem",
+            border: "1px solid #ccc",
+          }}
         />
+
       </div>
 
       {/* Location */}
@@ -140,18 +151,18 @@ export default function ProjectForm({ initialValues, onSubmit, loading }: Props)
           {...form.getInputProps("imagename")}
         />
       </div>
-    {/* Is Latest? */}
-<div className="flex items-center space-x-2">
-  <input
-    type="checkbox"
-    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600"
-    {...form.getInputProps("is_latest", { type: "checkbox" })}
-  />
-  <label className="text-sm font-medium text-gray-700 dark:text-gray-200">
-    Is latest?
-  </label>
-</div>
 
+      {/* Is Latest? */}
+      <div className="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600"
+          {...form.getInputProps("is_latest", { type: "checkbox" })}
+        />
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-200">
+          Is latest?
+        </label>
+      </div>
 
       {/* Submit */}
       <div className="text-right">
