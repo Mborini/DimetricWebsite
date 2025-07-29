@@ -115,7 +115,9 @@ const Header = () => {
                             className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
                               usePathName === menuItem.path
                                 ? "text-primary dark:text-white"
-                                : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                                : usePathName === "/" && !sticky
+                                  ? "text-white hover:text-primary"
+                                  : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             }`}
                           >
                             {menuItem.title}

@@ -23,15 +23,21 @@ const SingleProject = ({ project }: { project: ProjectType | undefined }) => {
   const formattedDate = start_date ? new Date(start_date).getFullYear() : "N/A";
 
   return (
-    <Card
-      shadow="md"
-      radius="xl"
-      bg="gray.4"
-      p="lg"
-      
-      style={{ transition: "transform 0.3s", cursor: "pointer" }}
-      className="hover:scale-[1.03]"
-    >
+   <Card
+  shadow="md"
+  radius="xl"
+  p="lg"
+  style={{
+    transition: "transform 0.3s",
+    cursor: "pointer",
+    background: "rgba(255, 255, 255, 0.1)",
+    backdropFilter: "blur(10px)",
+    WebkitBackdropFilter: "blur(10px)",
+    border: "1px solid rgba(255, 255, 255, 0.2)",
+  }}
+  className="hover:scale-[1.03]"
+>
+
       <Anchor component={Link} href={`/project-details/${id}`}>
         <Box
           h={250}
@@ -56,21 +62,21 @@ const SingleProject = ({ project }: { project: ProjectType | undefined }) => {
             {formattedDate}
           </Badge>
 
-          {imagename && (imagename.startsWith("http") || imagename.startsWith("/")) ? (
-  <Image
-    src={imagename}
-    alt={title}
-    fill
-    style={{ objectFit: "cover", zIndex: 1 }}
-  />
-) : (
-  <Center h="100%" bg="gray.2">
-    <Text size="sm" color="gray">
-      No Image
-    </Text>
-  </Center>
-)}
-
+          {imagename &&
+          (imagename.startsWith("http") || imagename.startsWith("/")) ? (
+            <Image
+              src={imagename}
+              alt={title}
+              fill
+              style={{ objectFit: "cover", zIndex: 1 }}
+            />
+          ) : (
+            <Center h="100%" bg="gray.2">
+              <Text size="sm" color="gray">
+                No Image
+              </Text>
+            </Center>
+          )}
         </Box>
       </Anchor>
       <Stack mt="md">
@@ -78,7 +84,7 @@ const SingleProject = ({ project }: { project: ProjectType | undefined }) => {
           <Anchor
             component={Link}
             href={`/product-details/${id}`}
-            c="dark.9"
+            className="text-inherit !text-gray-400 dark:text-gray-900"
             fw={500}
           >
             {title}

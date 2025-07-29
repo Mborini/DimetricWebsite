@@ -90,7 +90,7 @@ const BlogDetailsPage = () => {
                     Partner:
                   </Text>
 
-                  <Text c="gray.4" size="md">
+                  <Text size="md" className="text-gray-600 dark:text-white">
                     {project.partner || "Not specified"}
                   </Text>
                 </Group>
@@ -106,7 +106,7 @@ const BlogDetailsPage = () => {
                 >
                   Location:
                 </Text>
-                <Text c="gray.4" size="md">
+                <Text size="md" className="text-gray-600 dark:text-white">
                   {project.location || "Not specified"}
                 </Text>
               </Group>
@@ -135,7 +135,7 @@ const BlogDetailsPage = () => {
                 >
                   Client
                 </Title>
-                <Text c="gray.1" size="lg">
+                <Text size="md" className="text-gray-600 dark:text-white">
                   {project.client || "Client not specified"}
                 </Text>
               </Box>
@@ -143,8 +143,10 @@ const BlogDetailsPage = () => {
               {/* Dates */}
               <Stack gap={4} align="flex-end">
                 {project.start_date && (
-                  <Text size="sm" c="gray.4">
-                    <strong>Start Date:</strong>{" "}
+                  <Text size="sm" className="text-gray-600 dark:text-white ">
+                    <strong className="text-[#354476] dark:text-white">
+                      Start Date:
+                    </strong>{" "}
                     {new Date(project.start_date).toLocaleDateString(
                       undefined,
                       {
@@ -155,8 +157,9 @@ const BlogDetailsPage = () => {
                   </Text>
                 )}
                 {project.end_date && (
-                  <Text size="sm" c="gray.4">
-                    <strong>End Date:</strong>{" "}
+                  <Text size="sm" className="text-gray-600 dark:text-white ">
+                    <strong className="text-[#354476] dark:text-white">
+                      End Date:</strong>{" "}
                     {new Date(project.end_date).toLocaleDateString(undefined, {
                       year: "numeric",
                       month: "long",
@@ -166,7 +169,7 @@ const BlogDetailsPage = () => {
               </Stack>
             </Group>
           </Box>
-          <Text style={{ whiteSpace: "pre-wrap" }} c="gray.4" size="md" mb="xl">
+          <Text style={{ whiteSpace: "pre-wrap" }} className="text-gray-600 dark:text-white " size="md" mb="xl">
             {project.description ||
               "No description available for this project."}
           </Text>
