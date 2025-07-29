@@ -1,42 +1,59 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { Typewriter } from "react-simple-typewriter";
 import { Feature } from "@/types/feature";
-import SectionTitle from "../Common/SectionTitle";
 import SingleFeature from "./SingleFeature";
 
 const SolutionsAndFeatures = () => {
   const [features, setFeatures] = useState<Feature[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchFeatures = async () => {
-      try {
-        const res = await fetch("/api/solutions");
-        const data = await res.json();
-        setFeatures(data);
-      } catch (error) {
-        console.error("Failed to fetch features:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // مراقبة العنوان إذا دخل الشاشة
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
 
-    fetchFeatures();
-  }, []);
+  // تحكم في وقت الطباعة
+  const [startTyping, setStartTyping] = useState(false);
+
+  useEffect(() => {
+    if (inView) {
+      setStartTyping(true);
+    }
+  }, [inView]);
 
   return (
     <section id="features" className="relative py-16 md:py-20 lg:py-28 overflow-hidden">
-  {/* خلفية بصورة مع أوبيستي */}
-  <div
-    className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 -z-10"
-    style={{ backgroundImage: "url('/images/hero/m2.png')" }}
-  />
+      {/* الخلفية */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 -z-10"
+        style={{ backgroundImage: "url('/images/hero/m2.png')" }}
+      />
 
       <div className="container">
-        <h1 className="mb-20 text-5xl font-bold text-center text-black dark:text-white">
-          Our Solutions & Features
+        <h1
+          ref={ref}
+          className="mb-20 text-5xl font-bold text-center text-black dark:text-white min-h-[60px]"
+        >
+          {startTyping ? (
+            <Typewriter
+              words={['Our Solutions & Features']}
+              loop={1}
+              cursor={false}
+              cursorStyle="|"
+              typeSpeed={50}
+              deleteSpeed={0}
+              delaySpeed={1000}
+            />
+          ) : (
+            ""
+          )}
         </h1>
+
+        {/* المحتوى */}
         {loading ? (
           <div className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
             {[...Array(6)].map((_, i) => (

@@ -1,5 +1,8 @@
 "use client";
+
 import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { Typewriter } from "react-simple-typewriter";
 import SingleProject from "@/components/Projects/SingleProject";
 import SectionTitle from "@/components/Common/SectionTitle";
 
@@ -7,13 +10,19 @@ const LatestProjects = () => {
   const [projects, setProject] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.4,
+  });
+
+  const [startTyping, setStartTyping] = useState(false);
+  const [showCursor, setShowCursor] = useState(true);
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const response = await fetch("/api/latestProjects");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+        if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
         setProject(data);
       } catch (error) {
@@ -26,15 +35,47 @@ const LatestProjects = () => {
     fetchProjects();
   }, []);
 
+  useEffect(() => {
+    if (inView) {
+      setStartTyping(true);
+    }
+  }, [inView]);
+
   return (
-    <section className="pb-[120px] pt-[25px]">
+    <section className="pb-[120px]">
       <div className="container">
-        <SectionTitle
-          title="Our Latest Projects"
-          paragraph="Explore our latest projects and get to know more about them."
-          center
-          mb="80px"
-        />
+        <div ref={ref} className="text-center mb-[40px] min-h-[60px]">
+          {startTyping ? (
+            <h2 className="text-4xl font-bold text-black dark:text-white">
+              <Typewriter
+                words={["Our Latest Projects"]}
+                loop={1}
+                cursor={showCursor}
+                cursorStyle="|"
+                cursorBlinking={false}
+                typeSpeed={50}
+                deleteSpeed={0}
+                delaySpeed={1000}
+                onLoopDone={() => setShowCursor(false)}
+              />
+            </h2>
+          ) : (
+            <h2 className="text-4xl font-bold text-black dark:text-white">&nbsp;</h2>
+          )}
+          <p className="mt-4 text-base text-gray-600 dark:text-gray-300">
+            <Typewriter
+                words={["Explore our latest projects and innovations"]}
+                loop={1}
+                cursor={showCursor}
+                cursorStyle="|"
+                cursorBlinking={false}
+                typeSpeed={50}
+                deleteSpeed={0}
+                delaySpeed={1000}
+                onLoopDone={() => setShowCursor(false)}
+              />
+          </p>
+        </div>
       </div>
 
       <div className="container">
