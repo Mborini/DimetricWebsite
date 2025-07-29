@@ -83,12 +83,7 @@ export default function ProjectsManagement() {
         <Title order={2} ta="center">
           Projects Management
         </Title>
-        <Button
-          w={"15%"}
-          radius="xl"
-          variant="outline"
-          onClick={handleCreate}
-        >
+        <Button w={"15%"} radius="xl" variant="outline" onClick={handleCreate}>
           Create Project
         </Button>
         <Paper shadow="md" radius="md" p="md" withBorder>

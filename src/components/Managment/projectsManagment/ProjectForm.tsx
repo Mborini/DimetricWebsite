@@ -1,13 +1,7 @@
 "use client";
 
 import { useForm } from "@mantine/form";
-import dynamic from "next/dynamic";
 
-// تحميل RichTextEditor بشكل ديناميكي بدون SSR
-const RichTextEditor = dynamic(
-  () => import("@mantine/rte").then(mod => mod.RichTextEditor),
-  { ssr: false }
-);
 
 interface Props {
   initialValues?: any;
@@ -63,22 +57,18 @@ export default function ProjectForm({ initialValues, onSubmit, loading }: Props)
       </div>
 
       {/* Description (Rich Text Editor) */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-          Description
-        </label>
-         <RichTextEditor
-          value={form.values.description}
-          onChange={(value) => form.setFieldValue("description", value)}
-          className="dark:text-white"
-          style={{
-            minHeight: 200,
-            borderRadius: "0.75rem",
-            border: "1px solid #ccc",
-          }}
-        />
+      {/* Description (Textarea) */}
+<div>
+  <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+    Description
+  </label>
+  <textarea
+    rows={6}
+    className="w-full rounded-xl border border-gray-300 px-4 py-2 text-gray-900 dark:bg-gray-800 dark:text-white dark:border-gray-600"
+    {...form.getInputProps("description")}
+  />
+</div>
 
-      </div>
 
       {/* Location */}
       <div>
